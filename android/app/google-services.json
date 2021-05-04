@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "20185773592",
+    "project_id": "ayudaproyect-4165d",
+    "storage_bucket": "ayudaproyect-4165d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:20185773592:android:2c7b48203b2aa47dc7756d",
+        "android_client_info": {
+          "package_name": "com.example.ayudafinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "20185773592-rfq4ck2u3jqmmvtvlc9u1ltorqra0kj9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTEJRs4ZIUsBeC-JZndSDadKuXgZ8SthA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "20185773592-rfq4ck2u3jqmmvtvlc9u1ltorqra0kj9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
