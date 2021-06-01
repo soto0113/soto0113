@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:ayudafinal/addName.dart';
+import 'package:ayudafinal/pages/MyAsistencia.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -61,6 +63,27 @@ class _GymState extends State<Gym> {
                     contentPadding: EdgeInsets.all(10),
                     leading: Icon(Icons.add),
                     title: Text(
+                      'Perfil',
+                    ),
+                    subtitle: Text('Completa tu perfil'),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new CompletPerfil()));
+                    },
+                  )
+                ],
+              ),
+            ),
+            Card(
+              margin: EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    contentPadding: EdgeInsets.all(10),
+                    leading: Icon(Icons.add),
+                    title: Text(
                       'Reservar',
                     ),
                     subtitle: Text('Reserva tu cita para el dia siguiente'),
@@ -69,6 +92,27 @@ class _GymState extends State<Gym> {
                           context,
                           new MaterialPageRoute(
                               builder: (context) => new Reserves()));
+                    },
+                  )
+                ],
+              ),
+            ),
+             Card(
+              margin: EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    contentPadding: EdgeInsets.all(10),
+                    leading: Icon(Icons.add),
+                    title: Text(
+                      'Asistencia',
+                    ),
+                    subtitle: Text('Marca tu asistencia al gym'),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new MyAsistence()));
                     },
                   )
                 ],
@@ -108,12 +152,38 @@ class _GymState extends State<Gym> {
               accountName: null,
             ),
             ListTile(
+              title: Text('Perfil'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) =>new CompletPerfil()));
+              },
+            ),
+            Divider(
+              color: Colors.black,
+              height: 5.0,
+            ),
+            ListTile(
               title: Text('Reservar'),
               onTap: () {
                 Navigator.push(
                     context,
                     new MaterialPageRoute(
                         builder: (context) => new Reserves()));
+              },
+            ),
+            Divider(
+              color: Colors.black,
+              height: 5.0,
+            ),
+            ListTile(
+              title: Text('Asistencia'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new MyAsistence()));
               },
             ),
             Divider(

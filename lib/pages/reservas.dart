@@ -27,13 +27,13 @@ class _State extends State<Reserves> {
   List listaHoras = [];
 
   _State() {
-    inicializaReservas('04/22/2021', '06:00', 12);
+    inicializaReservas('04/22/2021', '06:00', 16);
   }
 
   @override
   initState() {
     super.initState();
-    consultaReservas('04/22/2021', '06:00', 12);
+    consultaReservas('04/22/2021', '06:00', 16);
     initUser();
   }
 
@@ -220,8 +220,8 @@ class _State extends State<Reserves> {
                   }, onConfirm: (date) {
                     fecha = DateFormat("MM/dd/yyy").format(date).toString();
                     setState(() {
-                      consultaReservas(fecha, '06:00', 12);
-                      creaHoras(fecha, fecha, horaSelect, '06:00', 12);
+                      consultaReservas(fecha, '06:00', 16);
+                      creaHoras(fecha, fecha, horaSelect, '06:00', 16);
                     });
                   }, currentTime: DateTime.now(), locale: LocaleType.es);
                 },
@@ -238,7 +238,7 @@ class _State extends State<Reserves> {
                 child: ListView(
                     padding: EdgeInsets.all(8.0),
                     children: creaHoras(
-                        '01/01/1990', fecha, horaSelect, '06:00', 12)))
+                        '01/01/1990', fecha, horaSelect, '06:00', 16)))
           ],
         ),
       ),

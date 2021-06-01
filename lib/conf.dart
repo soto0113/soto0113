@@ -32,27 +32,7 @@ class configuracionA extends StatelessWidget {
                   )
                 ],
               ),
-            ),/*
-            Card(
-              margin: EdgeInsets.all(10.0),
-              child: Column(
-                children: <Widget>[
-                  ListTile(
-                    contentPadding: EdgeInsets.all(10),
-                    leading: Icon(Icons.add),
-                    title: Text(
-                      'AÑADIR ENTRENAMIENTO',
-                    ),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          new MaterialPageRoute(
-                              builder: (context) => null));
-                    },
-                  )
-                ],
-              ),
-            ),*/
+            ),
             Card(
               margin: EdgeInsets.all(10.0),
               child: Column(
