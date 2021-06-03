@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
 class MyAsistence extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   
 
   final DatabaseReference=Firestore.instance;
@@ -41,11 +39,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
       FirebaseUser user = await FirebaseAuth.instance.currentUser();
       userEmail = user.email;
-
+      int capacidad;
+      var listado = new List(capacidad);
       DocumentReference ref = await DatabaseReference.collection("Asistencia")
       .add({
         'Usuario': userEmail,
-        'Asistio': true,
+        
+
       });
       print(ref.documentID);
   }
@@ -84,8 +84,6 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.blueAccent,
               onPressed:
                   createRecord,
-                
-              
               child: Icon(Icons.check, color: Colors.black,), 
             )
           ],

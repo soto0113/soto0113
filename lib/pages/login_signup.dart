@@ -1,5 +1,11 @@
+import 'package:ayudafinal/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ayudafinal/services/authentication.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'dart:core';
+
+
 
 // Clase que implementa el inicio de sesión y el registro de usuarios
 class LoginSignUpPage extends StatefulWidget {
@@ -21,6 +27,8 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
   String _email;
   String _password;
   String _errorMessage;
+  final databaseReference = Firestore.instance;
+  int limite;
 
   // inicializa el formulario del login
   FormMode _formMode = FormMode.LOGIN;
@@ -159,7 +167,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
               _showEmailInput(),
               _showPasswordInput(),
               _showPrimaryButton(),
-              _showSecondaryButton(),
+             // _showSecondaryButton(),
               _showErrorMessage(),
             ],
           ),
@@ -249,7 +257,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
   }
 
   // muestra un boton para crear cuenta
-  Widget _showSecondaryButton() {
+ /* Widget _showSecondaryButton() {
     return new FlatButton(
       child: _formMode == FormMode.LOGIN
           ? new Text('¿No tienes una cuenta? Registrate',
@@ -262,10 +270,49 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
           : _changeFormToLogin,
     );
   }
-
+*/
   // muestra boton de iniciar sesion
   Widget _showPrimaryButton() {
-    Size size = MediaQuery.of(context).size;
+    return ListView(
+      children: [
+        Container(
+            child: MaterialButton(
+            //padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+            //elevation: 5.0,
+            shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(29.0)),
+            color: Colors.blueAccent,
+            child: //_formMode == FormMode.LOGIN
+                 Text('INICIAR SESIÓN',
+                    style: new TextStyle(fontSize: 20.0, color: Colors.white)),
+            
+            onPressed: (){
+              databaseReference
+                    .collection('Deportistas')
+                    .getDocuments()
+                    .then((QuerySnapshot snapshot) { 
+                  limite = snapshot.documents.length; //limite
+                  for (int i = 0; i < limite; i++) {  // recorre cada lista
+                    DocumentSnapshot ds = snapshot.documents[i]; // muestra cada valor de la lista
+                    if (ds["Correo"] == _email && /// el ds ya es el comparativo
+                        ds["Contrasena"] == _password) {
+                      print("$i >> ${ds.documentID}");
+                       Navigator.of(context).push(// cabio de pantalla
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return new Gym();}));
+
+                    } else {
+                      //msjErroneo(context);
+                    }
+                  }
+                });
+              
+              }  //_validateAndSubmit,
+          ),
+        ),
+      ],
+    );
+    /*Size size = MediaQuery.of(context).size;
     return new Padding(
         padding: const EdgeInsets.all(29.0),//EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
         child: SizedBox(
@@ -284,6 +331,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
                     style: new TextStyle(fontSize: 20.0, color: Colors.white)),
             onPressed: _validateAndSubmit,
           ),
-        ));
+        ));*/
   }
+  
 }

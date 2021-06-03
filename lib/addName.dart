@@ -55,12 +55,7 @@ class _PerfilPageState extends State<PerfilPage> {
   String nombre = "";
   String cel = "";
   String identificacion = "";
-  //String genero = "";
   
-
-  //var _listGeneros = ['Hombre', 'Mujer', 'Otro'];
-  //String _vista = 'Selecciona una opción';
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -167,7 +162,7 @@ class _PerfilPageState extends State<PerfilPage> {
           ),
         validator: (value) =>
             value.isEmpty ? 'El campo no puede estar vacío' : null,
-        onSaved: (value) => nombre = value,
+        onSaved: (value) => identificacion = value,
       ),
     );
   }
