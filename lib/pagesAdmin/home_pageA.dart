@@ -1,12 +1,17 @@
 import 'dart:io';
 import 'package:ayudafinal/Calendario.dart/addActivity.dart';
-import 'package:ayudafinal/addEmpresa.dart';
+import 'package:ayudafinal/pagesAdmin/addTiposUsua.dart';
+import 'package:ayudafinal/pagesAdmin/addEmpresa.dart';
+import 'package:ayudafinal/pagesAdmin/listaUsuario.dart';
+import 'package:ayudafinal/pagesAdmin/listadoClases.dart';
 import 'package:ayudafinal/pagesAdmin/login_signupA.dart';
-import 'package:ayudafinal/pagesAdmin/proHorario.dart';
+import 'package:ayudafinal/pagesAdmin/perfilA.dart';
+import 'package:ayudafinal/pagesAdmin/progHorarioGym.dart';
+import 'package:ayudafinal/pagesAdmin/verAsistencia.dart';
+import 'package:ayudafinal/pagesAdmin/verTiposUsuario.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ayudafinal/pagesAdmin/SportsA.dart';
 
 void main() => runApp(GymA());
 
@@ -70,7 +75,7 @@ class _GymAState extends State<GymA> {
                       Navigator.push(
                           context,
                           new MaterialPageRoute(
-                              builder: (context) => new proHorario()));
+                              builder: (context) => new CrearActividad()));
                     },
                   )
                 ],
@@ -84,14 +89,56 @@ class _GymAState extends State<GymA> {
                     contentPadding: EdgeInsets.all(10),
                     leading: Icon(Icons.add),
                     title: Text(
-                      'Programar Actividades',
+                      'Actividades del Gym',
                     ),
-                    subtitle: Text('Programa las actividades!'),
+                    subtitle: Text('Observa las actividades que has programado'),
                     onTap: () {
                       Navigator.push(
                           context,
                           new MaterialPageRoute(
-                              builder: (context) => new AddEventPage()));
+                              builder: (context) => new ClasesProgramadas()));
+                    },
+                  )
+                ],
+              ),
+            ),
+            Card(
+              margin: EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    contentPadding: EdgeInsets.all(10),
+                    leading: Icon(Icons.add),
+                    title: Text(
+                      'Listado de deportistas',
+                    ),
+                    subtitle: Text('Deportistas registrados'),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new DeportistasRegistrados()));
+                    },
+                  )
+                ],
+              ),
+            ),
+            Card(
+              margin: EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    contentPadding: EdgeInsets.all(10),
+                    leading: Icon(Icons.add),
+                    title: Text(
+                      'Deportistas',
+                    ),
+                    subtitle: Text('Verifica la asistencia de los deportista'),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new DeporAsistieron()));
                     },
                   )
                 ],
@@ -124,15 +171,16 @@ class _GymAState extends State<GymA> {
                 children: <Widget>[
                   ListTile(
                     contentPadding: EdgeInsets.all(10),
-                    leading: Icon(Icons.info),
-                    title: Text('SPORTS TRAINING'),
-                    subtitle: Text(
-                        'Información del Gym.'),
+                    leading: Icon(Icons.add),
+                    title: Text(
+                      'Tipos de usuarios',
+                    ),
+                    subtitle: Text('Agrega los tipos de usuarios'),
                     onTap: () {
                       Navigator.push(
                           context,
                           new MaterialPageRoute(
-                              builder: (context) => new Info()));
+                              builder: (context) => new AddMembresias()));
                     },
                   )
                 ],
@@ -152,12 +200,10 @@ class _GymAState extends State<GymA> {
               accountName: null,
             ),
             ListTile(
-              title: Text('Programar horarios'),
+              title: Text('Perfil'),
               onTap: () {
-                Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (context) => new proHorario()));
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (context) => new PerfilAdmin()));
               },
             ),
             Divider(
@@ -165,12 +211,64 @@ class _GymAState extends State<GymA> {
               height: 5.0,
             ),
             ListTile(
-              title: Text('Programar Actividades'),
+              title: Text('Programar horarios'),
               onTap: () {
                 Navigator.push(
                     context,
                     new MaterialPageRoute(
-                        builder: (context) => new AddEventPage()));
+                        builder: (context) => new CrearActividad()));
+              },
+            ),
+            Divider(
+              color: Colors.black,
+              height: 5.0,
+            ),
+            ListTile(
+              title: Text('Actividades Gym'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new ClasesProgramadas()));
+              },
+            ),
+            Divider(
+              color: Colors.black,
+              height: 5.0,
+            ),
+            ListTile(
+              title: Text('Listado Deportistas'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new DeportistasRegistrados()));
+              },
+            ),
+            Divider(
+              color: Colors.black,
+              height: 5.0,
+            ),
+            ListTile(
+              title: Text('Deportistas'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new DeporAsistieron()));
+              },
+            ),
+            Divider(
+              color: Colors.black,
+              height: 5.0,
+            ),
+            ListTile(
+              title: Text('Membresias'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new VerTiposUsuarios()));
               },
             ),
             Divider(
@@ -184,18 +282,6 @@ class _GymAState extends State<GymA> {
                     context,
                     new MaterialPageRoute(
                         builder: (context) => new addEmpresa()));
-              },
-            ),
-            Divider(
-              color: Colors.black,
-              height: 5.0,
-            ),
-            
-            ListTile(
-              title: Text('SPORTS TRAINING'),
-              onTap: () {
-                Navigator.push(context,
-                    new MaterialPageRoute(builder: (context) => new Info()));
               },
             ),
             Divider(

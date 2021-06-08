@@ -1,6 +1,10 @@
 import 'dart:io';
-import 'package:ayudafinal/addName.dart';
+import 'package:ayudafinal/pages/addName.dart';
 import 'package:ayudafinal/pages/MyAsistencia.dart';
+import 'package:ayudafinal/pages/agendamiento.dart';
+import 'package:ayudafinal/pages/agendarEspecial.dart';
+import 'package:ayudafinal/pages/verPerfil.dart';
+import 'package:ayudafinal/pagesAdmin/verTiposUsuario.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,13 +15,16 @@ import 'package:ayudafinal/pages/reservas.dart';
 void main() => runApp(Gym());
 
 class Gym extends StatefulWidget {
-  const Gym({this.onSignedOut});
+  const Gym({this.onSignedOut, this.codigo});
   final VoidCallback onSignedOut;
+  final String codigo;
   @override
   State<StatefulWidget> createState() => _GymState();
 }
 
 class _GymState extends State<Gym> {
+  final String code;
+  _GymState({this.code});
   final FirebaseAuth _auth = FirebaseAuth.instance;
   FirebaseUser user;
 
@@ -65,7 +72,7 @@ class _GymState extends State<Gym> {
                     title: Text(
                       'Perfil',
                     ),
-                    subtitle: Text('Completa tu perfil'),
+                    subtitle: Text('Completa o edita tu perfil'),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -84,9 +91,30 @@ class _GymState extends State<Gym> {
                     contentPadding: EdgeInsets.all(10),
                     leading: Icon(Icons.add),
                     title: Text(
-                      'Reservar',
+                      'Reservar Cita Usuario Normal',
                     ),
-                    subtitle: Text('Reserva tu cita para el dia siguiente'),
+                    subtitle: Text('Mira las actividades que hay disponibles y reserva!'),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new ReservarCita()));
+                    },
+                  )
+                ],
+              ),
+            ),
+            Card(
+              margin: EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    contentPadding: EdgeInsets.all(10),
+                    leading: Icon(Icons.add),
+                    title: Text(
+                      'Reservar Entrenamiento Libre',
+                    ),
+                    subtitle: Text('Reserva para usuario VIP'),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -113,6 +141,27 @@ class _GymState extends State<Gym> {
                           context,
                           new MaterialPageRoute(
                               builder: (context) => new MyAsistence()));
+                    },
+                  )
+                ],
+              ),
+            ),
+            Card(
+              margin: EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    contentPadding: EdgeInsets.all(10),
+                    leading: Icon(Icons.add),
+                    title: Text(
+                      'Matricularse',
+                    ),
+                    subtitle: Text('Matriculate con tu membresia'),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new VerTiposUsuarios()));
                     },
                   )
                 ],
@@ -157,7 +206,7 @@ class _GymState extends State<Gym> {
                 Navigator.push(
                     context,
                     new MaterialPageRoute(
-                        builder: (context) =>new CompletPerfil()));
+                        builder: (context) =>new PerfilUsuario()));
               },
             ),
             Divider(
@@ -170,7 +219,7 @@ class _GymState extends State<Gym> {
                 Navigator.push(
                     context,
                     new MaterialPageRoute(
-                        builder: (context) => new Reserves()));
+                        builder: (context) => new ReservarCita()));
               },
             ),
             Divider(

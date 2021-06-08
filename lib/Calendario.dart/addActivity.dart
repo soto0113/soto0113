@@ -15,6 +15,7 @@ class _AddEventPageState extends State<AddEventPage> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   TextEditingController _title;
   TextEditingController _description;
+  TextEditingController _costo;
   DateTime _eventDate;
   final _formKey = GlobalKey<FormState>();
   final _key = GlobalKey<ScaffoldState>();
@@ -25,6 +26,7 @@ class _AddEventPageState extends State<AddEventPage> {
     super.initState();
     _title = TextEditingController(text: widget.note != null ? widget.note.title : "");
     _description = TextEditingController(text:  widget.note != null ? widget.note.description : "");
+    _costo = TextEditingController(text:  widget.note != null ? widget.note.costo : "");
     _eventDate = DateTime.now();
     processing = false;
   }
@@ -66,7 +68,21 @@ class _AddEventPageState extends State<AddEventPage> {
                       (value.isEmpty) ? "Ingresa descripción" : null,
                   style: style,
                   decoration: InputDecoration(
-                      labelText: "descripción",
+                      labelText: "Descripción",
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                child: TextFormField(
+                  controller: _costo,
+                  validator: (value) =>
+                      (value.isEmpty) ? "Costo del evento:" : null,
+                  style: style,
+                  decoration: InputDecoration(
+                      labelText: "Precio",
+                      filled: true,
+                      fillColor: Colors.black12,
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
                 ),
               ),
@@ -104,12 +120,14 @@ class _AddEventPageState extends State<AddEventPage> {
                                 await eventDBS.updateData(widget.note.id,{
                                   "titulo": _title.text,
                                   "descripcion": _description.text,
+                                  "costo": _costo.text,
                                   "fecha_actividad": widget.note.eventDate,
                                 });
                               }else{
                                 await eventDBS.createItem(EventModel(
                                   title: _title.text,
                                   description: _description.text,
+                                  costo: _costo.text,
                                   eventDate: DateTime.now()
                                 ));
                               }
@@ -140,6 +158,7 @@ class _AddEventPageState extends State<AddEventPage> {
   void dispose() {
     _title.dispose();
     _description.dispose();
+    _costo.dispose();
     super.dispose();
   }
 }

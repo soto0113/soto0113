@@ -28,24 +28,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   void createRecord() async{
-      /*await DatabaseReference.collection("Asistencia")
-      .document("1")
-      .setData({
-        'title':"maestro",
-        'description': "es el mas",
-        'Atributo':"mi valor",
-      });*/
       String userEmail;
 
       FirebaseUser user = await FirebaseAuth.instance.currentUser();
       userEmail = user.email;
-      int capacidad;
-      var listado = new List(capacidad);
       DocumentReference ref = await DatabaseReference.collection("Asistencia")
       .add({
         'Usuario': userEmail,
-        
-
       });
       print(ref.documentID);
   }

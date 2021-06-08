@@ -6,15 +6,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 class addEmpresa extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Map data;
-    
-    Addadministrador(String texto, String dueno, String cel, String identi) async {
+    Addadministrador(String empresa, String dueno, String cel, String identi) async {
       String userEmail;
 
       FirebaseUser user = await FirebaseAuth.instance.currentUser();
       userEmail = user.email;
       Firestore.instance.collection(Constants.adminCollectionId).document(userEmail)
-      .setData({'Correo':userEmail,'Empresa':texto, 'Propietario': dueno, 
+      .setData({'Correo':userEmail,'Empresa':empresa, 'Propietario': dueno, 
       'Contacto':cel, 'Documento de identidad':identi
       });
     }
@@ -23,7 +21,7 @@ class addEmpresa extends StatelessWidget {
     final myControllerP = TextEditingController();
     final myControllerC = TextEditingController();
     final myControllerD = TextEditingController();
-    int elecion;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("SPORTS TRAINING"),
@@ -112,14 +110,8 @@ class addEmpresa extends StatelessWidget {
               color: Colors.orangeAccent,
                   onPressed: () {
                     Addadministrador(myControllerE.text,myControllerP.text,myControllerC.text,myControllerD.text);
-                    //elecion = 2;
                     Navigator.pop(context, false);
-                    /*Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => configuracionA()),
-                    );*/
                   },
-                  
               child: Row(
                   children: <Widget>[
                   Text('             Guardar ', style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),),

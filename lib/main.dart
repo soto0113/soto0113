@@ -1,8 +1,5 @@
 import 'package:ayudafinal/principal.dart';
 import 'package:flutter/material.dart';
-//import 'package:ayudafinal/pages/root_page.dart';
-//import 'package:ayudafinal/services/authentication.dart';
-
 void main() {
   runApp(new MyApp());
 }

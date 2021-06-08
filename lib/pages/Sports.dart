@@ -1,4 +1,4 @@
-import 'package:ayudafinal/actividades.dart';
+import 'package:ayudafinal/models/actividades.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
