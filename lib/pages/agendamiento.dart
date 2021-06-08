@@ -256,8 +256,8 @@ class _ReservarCitaState extends State<ReservarCita> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Exitoso'),
-          content: const Text('Has reservado para esta actividad'),
+          title: Text('Perfecto!'),
+          content: const Text('Haz reservado para esta actividad'),
           actions: [
             MaterialButton(
               child: Text('Ok'),

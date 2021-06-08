@@ -1,3 +1,4 @@
+import 'package:ayudafinal/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -37,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
         'Usuario': userEmail,
       });
       print(ref.documentID);
+      msjMarcaste(context);
   }
 
   @override
@@ -78,6 +80,29 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+    );
+  }
+  Future msjMarcaste(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Perfecto!'),
+          content: const Text(
+              'Haz marcado la asistencia'),
+          actions: [
+            MaterialButton(
+              child: Text('Ok'),
+              onPressed: () {
+                Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new Gym()));
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

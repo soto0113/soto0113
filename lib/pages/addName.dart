@@ -66,7 +66,11 @@ class _CompletPerfilState extends State<CompletPerfil> {
               },
               keyboardType: TextInputType.name,
               decoration: InputDecoration(
-                hintText: ' Escribe tu nombre ',
+                hintText: ' Nombre: ',
+                icon: new Icon(
+                  Icons.person,
+                  color: Colors.white,
+                ),
                 filled: true,
                 fillColor: Colors.black,
                 enabledBorder: OutlineInputBorder(
@@ -85,7 +89,11 @@ class _CompletPerfilState extends State<CompletPerfil> {
               },
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                hintText: ' Escribe tu número de celular ',
+                hintText: ' Celular: ',
+                icon: new Icon(
+                  Icons.phone,
+                  color: Colors.white,
+                ),
                 filled: true,
                 fillColor: Colors.black,
                 enabledBorder: OutlineInputBorder(
@@ -104,7 +112,11 @@ class _CompletPerfilState extends State<CompletPerfil> {
               },
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                hintText: ' Escribe tu número de identidad ',
+                hintText: ' Identificación: ',
+                icon: new Icon(
+                  Icons.perm_identity,
+                  color: Colors.white,
+                ),
                 filled: true,
                 fillColor: Colors.black,
                 enabledBorder: OutlineInputBorder(

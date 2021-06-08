@@ -17,6 +17,12 @@ class _ClasesProgramadasState extends State<ClasesProgramadas> {
   String id;
   int totalParticipantes;
   int capacidad;
+  eliminarReserva(doc) {
+    Firestore.instance
+        .collection("Ejercicios")
+        .document(doc)
+        .delete();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -211,6 +217,19 @@ class _ClasesProgramadasState extends State<ClasesProgramadas> {
                 onPressed: () {
                   mostrarListado(listado, capacidad);
                 }),
+                /*MaterialButton(
+              child: Text(
+                'Eliminar ',
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 20,
+                ),
+              ),
+              onPressed: () {
+                mostrarDialogo(doc);
+                Navigator.of(context).pop();
+              },
+            ),*/
             MaterialButton(
               child: Text(
                 'Regresar',
@@ -228,4 +247,69 @@ class _ClasesProgramadasState extends State<ClasesProgramadas> {
       },
     );
   }
+  
+  void mostrarDialogo(doc) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Atención'),
+            content: Text('¿Estas seguro de eliminar la actividad?'),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Si'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                  eliminarReserva(doc);
+                },
+              ),
+              FlatButton(
+                child: Text('No'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
+  }
 }
+/*
+// consulta a firebase para eliminar la reserva que por parametro se le pasa el id del documento
+  eliminarReserva(doc) {
+    Firestore.instance
+        .collection(Constants.reservasCollectionId)
+        .document(doc)
+        .delete();
+  }
+  // Muestra un dialogo que si el usuario pulsa en si elimina la reserva 
+  // le paso por parametro el id del documento para que se lo pase al método
+  // eliminar reserva
+  void mostrarDialogo(doc) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Atención'),
+            content: Text('¿Estas seguro de cancelar la reserva?'),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Si'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                  eliminarReserva(doc);
+                },
+              ),
+              FlatButton(
+                child: Text('No'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
+  }
+*/
